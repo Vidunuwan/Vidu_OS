@@ -1,27 +1,15 @@
-char *fb = (char *) 0x000B8000;
+  
+    #include "frame_buffer.h"
+    #include "serial_port.h"
 
-
-
-void fb_write_cell(unsigned int i, char c, unsigned char fg, unsigned char bg)
-
-    {
-
-        fb[i] = c;
-
-        fb[i + 1] = ((fg & 0x0F) << 4) | (bg & 0x0F);
-
-    }
 
     
+    int main(){
 
-#define FB_GREEN     2
-
-#define FB_DARK_GREY 8    
-
-void kmain()
-
-{
-
-	fb_write_cell(0, 'A',FB_GREEN,FB_DARK_GREY);
-
-}
+           char ptr2[] = "Starting Vidu OS";
+   
+    
+    serial_write(0x3F8, ptr2, 16);
+    fb_write(ptr2, 16);
+    
+    }	

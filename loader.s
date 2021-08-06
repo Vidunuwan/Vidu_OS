@@ -21,8 +21,8 @@ global loader                   ; the entry symbol for ELF
         mov esp, kernel_stack + KERNEL_STACK_SIZE       ; point esp to the start of the
                                                                                         ;stack (end of memory area)
         ; The assembly code
-        extern kmain   ; the function sum_of_three is defined elsewhere
-        call kmain       ; call the function, the result will be in eax
+        extern main; 
+        call main; 
 
     .loop:
         jmp .loop                   ; loop forever
