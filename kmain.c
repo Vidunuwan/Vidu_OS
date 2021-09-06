@@ -7,10 +7,18 @@
     #include "keyboard.h"
     #include "pic.h"
     #include "multiboot.h"
+    #include "paging.h"
+    
+   void init(){
+   segments_install_gdt();
+   interrupts_install_idt();
+   init_paging();
+}
     
     
     void kmain(unsigned int ebx)
     {
+    
 
        //char arr[] = "Startin Vidu OS";
        //fb_move_cursor(6*80);
@@ -18,6 +26,9 @@
        //serial_write(arr, 20);
        //segments_install_gdt();
        //interrupts_install_idt();
+       
+       
+       init();
        
         multiboot_info_t *mbinfo = (multiboot_info_t *) ebx;
   	multiboot_module_t* modules = (multiboot_module_t*) mbinfo->mods_addr; 
